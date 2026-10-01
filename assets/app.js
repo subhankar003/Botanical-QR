@@ -94,7 +94,7 @@ function renderHome() {
     });
 
     const search = document.getElementById('plant-search');
-    search.oninput = () => {
+    const filterPlants = () => {
         const query = search.value.trim().toLocaleLowerCase();
         let matches = 0;
         document.querySelectorAll('[data-plant]').forEach((card) => {
@@ -106,6 +106,10 @@ function renderHome() {
         });
         document.getElementById('no-results').hidden = matches !== 0;
     };
+    search.oninput = filterPlants;
+    // A browser can restore the previous field value without emitting an input
+    // event, so apply the filter once when the home page renders as well.
+    filterPlants();
 
     plants.forEach((plant) => {
         const image = document.querySelector(`[data-img="${plant.slug}"]`);
