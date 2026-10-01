@@ -1,7 +1,7 @@
 # Botanical-QR
 
 A mobile-first, Odia-first medicinal plant encyclopedia for QR-linked public plant pages.
-
+can be accessed at https://subhankar003.github.io/Botanical-QR/
 ## Included plants
 
 ତୁଳସୀ · ବ୍ରାହ୍ମୀ · ଶତାବରୀ · ପାତାଳଗରୁଡ · ବାସଙ୍ଗ · ଭୃଷଙ୍ଗ · ଘିକୁଆଁରୀ · ଭୂଇଁନିମ · ଗଙ୍ଗଶିଉଳି · ହାଡଯୋଡ · ପଶାରୁଣୀ · ଓଲୁଅ
