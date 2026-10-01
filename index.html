@@ -127,9 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
             🌿 ଔଷଧୀୟ ଉଦ୍ଭିଦ ବିଶ୍ୱକୋଷ
         </a>
 <div class="language-switcher">
-    <button type="button" data-lang="or" onclick="setLanguage('or')">ଓଡ଼ିଆ</button>
-    <button type="button" data-lang="hi" onclick="setLanguage('hi')">हिन्दी</button>
-    <button type="button" data-lang="en" onclick="setLanguage('en')">English</button>
+    <button type="button" data-lang="or">ଓଡ଼ିଆ</button>
+    <button type="button" data-lang="hi">हिन्दी</button>
+    <button type="button" data-lang="en">English</button>
 </div>
 
     </div>
@@ -474,6 +474,95 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <script src="assets/app.js"></script>
+    <script>
+const translations = {
+    or: {
+        eyebrow: "ଉଦ୍ଭିଦ ଜ୍ଞାନକୋଷ",
+        title: "ଆମ ଔଷଧୀୟ ଉଦ୍ଭିଦ",
+        description: "ଓଡ଼ିଶାରେ ପାରମ୍ପରିକ ଭାବେ ପରିଚିତ ଔଷଧୀୟ ଉଦ୍ଭିଦଗୁଡ଼ିକ ବିଷୟରେ ଜାଣନ୍ତୁ।",
+        search: "ଉଦ୍ଭିଦ ଖୋଜନ୍ତୁ...",
+        plants: "ଉଦ୍ଭିଦ ତାଲିକା"
+    },
+
+    hi: {
+        eyebrow: "पौधों का ज्ञानकोश",
+        title: "हमारे औषधीय पौधे",
+        description: "ओडिशा में पारंपरिक रूप से पहचाने जाने वाले औषधीय पौधों के बारे में जानें।",
+        search: "पौधा खोजें...",
+        plants: "पौधों की सूची"
+    },
+
+    en: {
+        eyebrow: "Plant Knowledge Base",
+        title: "Our Medicinal Plants",
+        description: "Explore medicinal plants traditionally known and used in Odisha.",
+        search: "Search plants...",
+        plants: "Plant Directory"
+    }
+};
+
+function setHomeLanguage(lang) {
+
+    const t = translations[lang];
+
+    if (!t) return;
+
+    const eyebrow = document.getElementById("hero-eyebrow");
+    const title = document.getElementById("hero-title");
+    const description = document.getElementById("hero-description");
+    const search = document.getElementById("plant-search");
+
+    if (eyebrow) {
+        eyebrow.textContent = t.eyebrow;
+    }
+
+    if (title) {
+        title.textContent = t.title;
+    }
+
+    if (description) {
+        description.textContent = t.description;
+    }
+
+    if (search) {
+        search.placeholder = t.search;
+    }
+
+    /* Language button active state */
+    document.querySelectorAll("[data-language]").forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.language === lang
+        );
+    });
+
+    /* Remember language */
+    localStorage.setItem("botanicalLanguage", lang);
+}
+
+
+/* Wait until the page is completely loaded */
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll("[data-language]").forEach(button => {
+
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            const lang = this.dataset.language;
+
+            setHomeLanguage(lang);
+        });
+
+    });
+
+    const savedLanguage =
+        localStorage.getItem("botanicalLanguage") || "or";
+
+    setHomeLanguage(savedLanguage);
+});
+    </script>
 
 </body>
                   </html>
