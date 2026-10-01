@@ -1053,3 +1053,226 @@ footer {
         font-size: 12px;
     }
 }
+/* =====================================================
+   HOME PAGE - PLANT CARD FIX
+   ===================================================== */
+
+.plants-section {
+    margin: 40px 0 70px;
+}
+
+.plant-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    margin-top: 25px;
+}
+
+/* CARD */
+.plant-card {
+    display: flex !important;
+    flex-direction: column !important;
+
+    width: 100% !important;
+    min-height: 360px;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dce8e1 !important;
+    border-radius: 20px !important;
+
+    overflow: hidden !important;
+
+    text-decoration: none !important;
+    color: #17342a !important;
+
+    box-shadow: 0 6px 22px rgba(23,52,42,.08) !important;
+
+    transition: transform .2s ease, box-shadow .2s ease !important;
+}
+
+.plant-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(23,52,42,.14) !important;
+}
+
+
+/* IMAGE AREA */
+.plant-card-image {
+    width: 100% !important;
+    height: 220px !important;
+
+    background: #f1f7f3 !important;
+
+    overflow: hidden !important;
+
+    display: block !important;
+}
+
+.plant-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+
+    display: block !important;
+
+    object-fit: cover !important;
+
+    border: 0 !important;
+
+    transition: transform .35s ease !important;
+}
+
+.plant-card:hover .plant-card-image img {
+    transform: scale(1.05);
+}
+
+
+/* CARD CONTENT */
+.plant-card-body {
+    padding: 18px 20px 22px !important;
+
+    background: #ffffff !important;
+}
+
+.plant-card-body h3 {
+    margin: 0 0 4px !important;
+
+    color: #17342a !important;
+
+    font-size: 24px !important;
+    font-weight: 800 !important;
+
+    line-height: 1.35 !important;
+}
+
+.plant-card-body p {
+    margin: 3px 0 5px !important;
+
+    color: #64756d !important;
+
+    font-size: 17px !important;
+}
+
+.plant-card-body em {
+    display: block !important;
+
+    margin-top: 8px !important;
+
+    color: #466359 !important;
+
+    font-size: 14px !important;
+}
+
+
+/* SECTION TITLE */
+.section-heading {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 15px;
+
+    margin-bottom: 10px;
+}
+
+.section-heading h2 {
+    margin: 0 !important;
+}
+
+#plant-count {
+    color: #64756d !important;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   LANGUAGE BUTTONS - HOME PAGE
+   ===================================================== */
+
+.language-switcher {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+}
+
+.language-switcher button {
+    border: 1px solid #dce8e1 !important;
+
+    background: #ffffff !important;
+
+    color: #17342a !important;
+
+    padding: 9px 13px !important;
+
+    border-radius: 12px !important;
+
+    font-size: 15px !important;
+
+    cursor: pointer;
+}
+
+.language-switcher button.active {
+    background: #17342a !important;
+    color: #ffffff !important;
+
+    border-color: #17342a !important;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 850px) {
+
+    .plant-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 18px !important;
+    }
+
+    .plant-card-image {
+        height: 200px !important;
+    }
+}
+
+
+@media (max-width: 560px) {
+
+    .plant-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .plant-card {
+        min-height: 0 !important;
+
+        display: grid !important;
+        grid-template-columns: 110px 1fr !important;
+    }
+
+    .plant-card-image {
+        height: 100% !important;
+        min-height: 125px !important;
+    }
+
+    .plant-card-body {
+        padding: 15px !important;
+    }
+
+    .plant-card-body h3 {
+        font-size: 20px !important;
+    }
+
+    .plant-card-body p {
+        font-size: 15px !important;
+    }
+
+    .plant-card-body em {
+        font-size: 13px !important;
+    }
+
+    .language-switcher button {
+        padding: 7px 9px !important;
+        font-size: 13px !important;
+    }
+}
