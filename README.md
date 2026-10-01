@@ -24,4 +24,4 @@ This is a static site. Publish the repository root with GitHub Pages. The site w
 
 ### Important image note
 
-Plant images are loaded from Wikipedia's public REST summary endpoint at runtime so the repository stays lightweight. If a Wikipedia image is unavailable, the page falls back to a Wikimedia Commons file path. For a long-term archival release, replace these remote images with locally stored, licence-checked photographs and add attribution.
+Home-page cards use explicit Wikimedia Commons Special:FilePath URLs so they do not depend on the Wikipedia REST API. Plant detail images continue to use the REST summary endpoint and fall back to a Wikimedia Commons file path if needed. For a long-term archival release, replace these remote images with locally stored, licence-checked photographs and add attribution.

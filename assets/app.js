@@ -12,6 +12,57 @@ const plants = [
 {slug:'pasaruni',od:'ପଶାରୁଣୀ',hi:'प्रसारिणी',en:'Skunk vine',botanical:'Paederia foetida L.',family:'Rubiaceae',habit:'Climbing perennial',parts:'Leaves, roots, stems',key:'Paederia foetida',ayur:'Traditional use: used in regional traditional medicine and food practices; plant parts have distinctive odour.',distribution:'Kew lists P. foetida as accepted and native from eastern Nepal through Japan and Malesia, including India.',ref:'https://powo.science.kew.org/taxon/urn%3Alsid%3Aipni.org%3Anames%3A758897-1'},
 {slug:'olua',od:'ଓଲୁଅ',hi:'स्नुही / सेहुंड',en:'Indian spurge tree',botanical:'Euphorbia neriifolia L.',family:'Euphorbiaceae',habit:'Succulent shrub / small tree',parts:'Stem, latex (traditional use)',key:'Euphorbia neriifolia',ayur:'Traditional use: used in some Ayurvedic preparations, but its latex is irritating/toxic and should not be self-administered.',distribution:'Kew lists E. neriifolia as accepted and native from Iran to Myanmar, including India.',ref:'https://powo.science.kew.org/taxon/347489-1'}
 ];
+const DETAIL_TEXT = {
+    tulasi: {
+        od: 'ପାରମ୍ପରିକ ଆୟୁର୍ବେଦରେ କାଶ, ସର୍ଦ୍ଦି, ଶ୍ୱାସକ୍ରିୟାର ସୁବିଧା ଏବଂ ସାଧାରଣ ସୁସ୍ଥତା ସହ ସମ୍ବନ୍ଧିତ ପ୍ରସ୍ତୁତିରେ ଏହା ବ୍ୟବହୃତ ହୁଏ। ଏଗୁଡ଼ିକ ପାରମ୍ପରିକ ବ୍ୟବହାର, ପ୍ରମାଣିତ ଚିକିତ୍ସା ନୁହେଁ।',
+        hi: 'पारंपरिक आयुर्वेद में इसका उपयोग खांसी, सर्दी, श्वसन आराम और सामान्य स्वास्थ्य से जुड़ी तैयारियों में किया जाता है। ये पारंपरिक उपयोग हैं, सिद्ध उपचार नहीं।'
+    },
+    brahmi: {
+        od: 'ପାରମ୍ପରିକ ଆୟୁର୍ବେଦରେ ଏହାକୁ ମେଧ୍ୟ ରସାୟନ ଭାବରେ ବର୍ଣ୍ଣନା କରାଯାଏ ଏବଂ ସ୍ମୃତି, ଏକାଗ୍ରତା ଓ ମାନସିକ ଶାନ୍ତି ସହ ଯୋଡ଼ାଯାଏ।',
+        hi: 'पारंपरिक आयुर्वेद में इसे मेध्य रसायन कहा जाता है और इसे स्मृति, एकाग्रता तथा मानसिक शांति से जोड़ा जाता है।'
+    },
+    shatavari: {
+        od: 'ପାରମ୍ପରିକ ଆୟୁର୍ବେଦରେ ଏହାକୁ ରସାୟନ ଏବଂ ନାରୀ ସ୍ୱାସ୍ଥ୍ୟ ସମ୍ବନ୍ଧୀୟ ପ୍ରସ୍ତୁତିରେ ବ୍ୟବହାର କରାଯାଏ; ଏହାକୁ ପୋଷକ ଓ ସହାୟକ ଭାବରେ ବର୍ଣ୍ଣନା କରାଯାଏ।',
+        hi: 'पारंपरिक आयुर्वेद में इसका उपयोग रसायन तथा महिलाओं के स्वास्थ्य से जुड़ी तैयारियों में किया जाता है; इसे पोषक और सहायक बताया जाता है।'
+    },
+    'patala-garuda': {
+        od: 'ପାରମ୍ପରିକ ଆୟୁର୍ବେଦରେ ଏହାର କନ୍ଦମୂଳକୁ ଔଷଧୀୟ ପ୍ରସ୍ତୁତିରେ ପୋଷକ ଏବଂ ପୁନର୍ସ୍ଥାପନକାରୀ ଉପାଦାନ ଭାବେ ମୂଲ୍ୟ ଦିଆଯାଏ।',
+        hi: 'पारंपरिक आयुर्वेद में इसके कंद को औषधीय तैयारियों में पोषक और पुनर्स्थापना करने वाले घटक के रूप में महत्व दिया जाता है।'
+    },
+    basanga: {
+        od: 'ପାରମ୍ପରିକ ଆୟୁର୍ବେଦରେ ପତ୍ରଗୁଡ଼ିକ କାଶ ଏବଂ ଶ୍ୱାସକ୍ରିୟା ସମସ୍ୟା ସମ୍ବନ୍ଧୀୟ ପ୍ରସ୍ତୁତିରେ ବ୍ୟବହୃତ ହୁଏ।',
+        hi: 'पारंपरिक आयुर्वेद में पत्तियों का उपयोग खांसी और श्वसन संबंधी शिकायतों की तैयारियों में किया जाता है।'
+    },
+    bhrusanga: {
+        od: 'ପାରମ୍ପରିକ ବ୍ୟବହାରରେ ପତ୍ରଗୁଡ଼ିକ ଖାଦ୍ୟ ଏବଂ ଲୋକଚିକିତ୍ସାରେ ବହୁଳ ଭାବରେ ବ୍ୟବହୃତ ହୁଏ; ଦକ୍ଷିଣ ଏସିଆରେ ରନ୍ଧନ ବ୍ୟବହାର ବିଶେଷ ସାଧାରଣ।',
+        hi: 'पारंपरिक उपयोग में पत्तियों का भोजन और लोक उपचारों में व्यापक उपयोग होता है; दक्षिण एशिया में इसका पाक उपयोग विशेष रूप से आम है।'
+    },
+    ghikuanri: {
+        od: 'ପାରମ୍ପରିକ ବ୍ୟବହାରରେ ପତ୍ର ପ୍ରସ୍ତୁତି ଓ ଜେଲ୍‌ର ତ୍ୱଚା ଯତ୍ନ ଏବଂ ଅନ୍ୟାନ୍ୟ କାର୍ଯ୍ୟରେ ଦୀର୍ଘକାଳୀନ ବ୍ୟବହାର ରହିଛି। ଭିତରେ ବ୍ୟବହାର କଲେ ସତର୍କତା ଆବଶ୍ୟକ।',
+        hi: 'पारंपरिक उपयोग में पत्ती की तैयारियों और जेल का त्वचा देखभाल तथा अन्य उद्देश्यों के लिए लंबे समय से उपयोग होता आया है। आंतरिक उपयोग में सावधानी आवश्यक है।'
+    },
+    'bhuin-neem': {
+        od: 'ପାରମ୍ପରିକ ଆୟୁର୍ବେଦରେ ଏହି ତୀବ୍ର ତିକ୍ତ ଉଦ୍ଭିଦକୁ ପାଚନ ଏବଂ ଋତୁକାଳୀନ ସୁସ୍ଥତା ସମ୍ବନ୍ଧୀୟ ପ୍ରସ୍ତୁତିରେ ବ୍ୟବହାର କରାଯାଏ।',
+        hi: 'पारंपरिक आयुर्वेद में इस अत्यंत कड़वी जड़ी-बूटी का उपयोग पाचन और मौसमी स्वास्थ्य से जुड़ी तैयारियों में किया जाता है।'
+    },
+    gangashiuli: {
+        od: 'ପାରମ୍ପରିକ ବ୍ୟବହାରରେ ଜ୍ୱର, ସନ୍ଧି ଅସୁବିଧା ଓ ଅନ୍ୟାନ୍ୟ ଅଭିଯୋଗ ପାଇଁ ବିଭିନ୍ନ ଅଂଶ ବ୍ୟବହୃତ ହୁଏ; ପ୍ରମାଣ ଏବଂ ପ୍ରସ୍ତୁତି ଭିନ୍ନ ହୋଇଥାଏ।',
+        hi: 'पारंपरिक प्रणालियों में इसके विभिन्न भागों का उपयोग बुखार, जोड़ों की असुविधा और अन्य शिकायतों के लिए किया जाता है; प्रमाण और तैयारियां अलग-अलग हैं।'
+    },
+    hadjoda: {
+        od: 'ପାରମ୍ପରିକ ଆୟୁର୍ବେଦରେ କାଣ୍ଡକୁ ହାଡ଼, ସନ୍ଧି ଏବଂ ପେଶୀ-ହାଡ଼ ସମର୍ଥନ ସହ ସମ୍ବନ୍ଧିତ ପ୍ରସ୍ତୁତିରେ ବ୍ୟବହାର କରାଯାଏ।',
+        hi: 'पारंपरिक आयुर्वेद में तने का उपयोग हड्डियों, जोड़ों और मांसपेशी-हड्डी सहारे से जुड़ी तैयारियों में किया जाता है।'
+    },
+    pasaruni: {
+        od: 'ପାରମ୍ପରିକ ବ୍ୟବହାରରେ ଏହା ଅଞ୍ଚଳୀୟ ଲୋକଚିକିତ୍ସା ଓ ଖାଦ୍ୟ ପ୍ରଥାରେ ବ୍ୟବହୃତ ହୁଏ; ଉଦ୍ଭିଦ ଅଂଶଗୁଡ଼ିକର ଏକ ବିଶିଷ୍ଟ ଗନ୍ଧ ରହିଥାଏ।',
+        hi: 'पारंपरिक उपयोग में इसका क्षेत्रीय लोक चिकित्सा और खाद्य प्रथाओं में उपयोग होता है; पौधे के भागों में विशिष्ट गंध होती है।'
+    },
+    olua: {
+        od: 'ପାରମ୍ପରିକ ବ୍ୟବହାରରେ ଏହା କିଛି ଆୟୁର୍ବେଦିକ ପ୍ରସ୍ତୁତିରେ ବ୍ୟବହୃତ ହୁଏ, କିନ୍ତୁ ଏହାର କ୍ଷୀର ଉତ୍ତେଜକ/ବିଷାକ୍ତ ହୋଇପାରେ ଏବଂ ନିଜେ ନିଜେ ବ୍ୟବହାର କରିବା ଉଚିତ୍ ନୁହେଁ।',
+        hi: 'पारंपरिक उपयोग में इसका कुछ आयुर्वेदिक तैयारियों में उपयोग होता है, लेकिन इसका दूधिया रस उत्तेजक/विषाक्त हो सकता है और इसका स्वयं उपयोग नहीं करना चाहिए।'
+    }
+};
+
 const T = {
     od: {
         title: 'ଔଷଧୀୟ ଉଦ୍ଭିଦ ବିଶ୍ୱକୋଷ', search: 'ଉଦ୍ଭିଦ ଖୋଜନ୍ତୁ…', details: 'ମୁଖ୍ୟ ବିବରଣୀ', ayur: 'ଆୟୁର୍ବେଦିକ / ପାରମ୍ପରିକ ବ୍ୟବହାର', safety: 'ସତର୍କତା', ref: 'ଉତ୍ସ ଓ ସନ୍ଦର୍ଭ', qr: 'QR କୋଡ୍', bot: 'ବୈଜ୍ଞାନିକ ନାମ', family: 'ପରିବାର', habit: 'ପ୍ରକୃତି', parts: 'ବ୍ୟବହୃତ ଅଂଶ', dist: 'ବିସ୍ତାର', back: 'ସମସ୍ତ ଉଦ୍ଭିଦ', disclaimer: 'ଏହି ସାଇଟ୍ ଶିକ୍ଷାମୂଳକ ଓ ପାରମ୍ପରିକ ତଥ୍ୟ ପାଇଁ। ଏହା ଡାକ୍ତରୀ ପରାମର୍ଶ ନୁହେଁ।'
@@ -29,6 +80,25 @@ const HOME_T = {
     hi: { siteTitle: '🌿 औषधीय पौधों का विश्वकोश', kicker: 'पौधों का ज्ञानकोश', title: 'हमारे औषधीय पौधे', description: 'ओडिशा में पारंपरिक रूप से पहचाने जाने वाले औषधीय पौधों के बारे में जानें।', plantsTitle: 'पौधों की सूची', count: '12 पौधे', noResults: 'कोई पौधा नहीं मिला।', aboutTitle: 'इस विश्वकोश के बारे में', aboutText: 'यह वेबसाइट औषधीय और पारंपरिक रूप से उपयोग किए जाने वाले पौधों के बारे में सामान्य शैक्षिक जानकारी देती है।' },
     en: { siteTitle: '🌿 Medicinal Plants Encyclopedia', kicker: 'Plant Knowledge Base', title: 'Our Medicinal Plants', description: 'Explore medicinal plants traditionally known and used in Odisha.', plantsTitle: 'Plant Directory', count: '12 plants', noResults: 'No plants found.', aboutTitle: 'About this encyclopedia', aboutText: 'This website provides general educational information about medicinal and traditionally used plants.' }
 };
+
+const SAFETY_TEXT = {
+    od: {
+        standard: 'ପାରମ୍ପରିକ ବ୍ୟବହାର କୌଣସି ଚିକିତ୍ସା ଅବସ୍ଥା ପାଇଁ କାର୍ଯ୍ୟକାରିତା କିମ୍ବା ସୁରକ୍ଷା ସ୍ଥାପିତ କରେ ନାହିଁ। ଗର୍ଭବତୀ ବ୍ୟକ୍ତି, ଶିଶୁ ଏବଂ ଔଷଧ ନେଉଥିବା ଲୋକମାନେ ଔଷଧୀୟ ବ୍ୟବହାର ପୂର୍ବରୁ ଯୋଗ୍ୟ ପରାମର୍ଶ ନିଅନ୍ତୁ।',
+        olua: 'ଦୁଧିଆ କ୍ଷୀର ତ୍ୱଚା ଓ ଆଖିରେ ଜ୍ୱଳନ ସୃଷ୍ଟି କରିପାରେ ଏବଂ ଗିଳିଲେ ବିଷାକ୍ତ ହୋଇପାରେ। ଯୋଗ୍ୟ ବିଶେଷଜ୍ଞଙ୍କ ପରାମର୍ଶ ବିନା କଞ୍ଚା କ୍ଷୀର ବ୍ୟବହାର କରନ୍ତୁ ନାହିଁ।'
+    },
+    hi: {
+        standard: 'पारंपरिक उपयोग किसी चिकित्सीय स्थिति के लिए प्रभावशीलता या सुरक्षा सिद्ध नहीं करता। गर्भवती लोगों, बच्चों और दवाएं लेने वाले लोगों को औषधीय उपयोग से पहले योग्य सलाह लेनी चाहिए।',
+        olua: 'दूधिया रस त्वचा और आंखों में जलन कर सकता है तथा निगलने पर विषाक्त हो सकता है। योग्य विशेषज्ञ की सलाह के बिना कच्चे रस का उपयोग न करें।'
+    },
+    en: {
+        standard: 'Traditional use does not establish effectiveness or safety for a medical condition. Pregnant people, children and people taking medicines should seek qualified advice before medicinal use.',
+        olua: 'The milky latex can irritate skin and eyes and may be toxic if swallowed. Do not use raw latex without qualified professional guidance.'
+    }
+};
+
+function localizedTraditionalUse(plant) {
+    return DETAIL_TEXT[plant.slug]?.[lang] || plant.ayur;
+}
 
 let lang = localStorage.getItem('bqr-lang') || 'od';
 if (!T[lang]) lang = 'od';
@@ -121,6 +191,10 @@ function renderPlantDetail(app) {
     const plant = plants.find((entry) => location.pathname.includes(`/plant/${entry.slug}`));
     if (!plant) return;
 
+    document.querySelector('.brand').textContent = `🌿 ${t.title}`;
+    document.title = t.title;
+    document.getElementById('disclaimer').textContent = t.disclaimer;
+    app.innerHTML = `<section class="hero plantHero"><a class="back" href="../../">← ${t.back}</a><div class="plantGrid"><div><div class="bigimg"><span>🌿</span><img id="heroimg" alt="${plant.en}"></div></div><div><span class="badge">${plant.family}</span><h1>${plant.od}</h1><p class="native">${plant.hi}</p><p class="english">${plant.en}</p><p class="scientific"><i>${plant.botanical}</i></p><div class="actions"><button id="print">🖨️</button><button id="makeqr">${t.qr}</button></div></div></div></section><section class="contentGrid"><article><h2>${t.details}</h2><div class="facts"><div><b>${t.bot}</b><span><i>${plant.botanical}</i></span></div><div><b>${t.family}</b><span>${plant.family}</span></div><div><b>${t.habit}</b><span>${plant.habit}</span></div><div><b>${t.parts}</b><span>${plant.parts}</span></div><div><b>${t.dist}</b><span>${plant.distribution}</span></div></div><h2>${t.ayur}</h2><p>${localizedTraditionalUse(plant)}</p><div class="warning"><b>${t.safety}</b><p>${plant.slug === 'olua' ? SAFETY_TEXT[lang].olua : SAFETY_TEXT[lang].standard}</p></div><h2>${t.ref}</h2><p><a href="${plant.ref}" target="_blank" rel="noopener">Plants of the World Online — Royal Botanic Gardens, Kew</a></p><p><a href="https://en.wikipedia.org/wiki/${encodeURIComponent(plant.en.split(' / ')[0])}" target="_blank" rel="noopener">Wikipedia</a></p></article><aside><div class="qrbox"><h3>${t.qr}</h3><div id="qrcode"></div><small>Scan to open this plant page.</small></div></aside></section>`;
     document.getElementById('disclaimer').textContent = t.disclaimer;
     app.innerHTML = `<section class="hero plantHero"><a class="back" href="../../">← ${t.back}</a><div class="plantGrid"><div><div class="bigimg"><span>🌿</span><img id="heroimg" alt="${plant.en}"></div></div><div><span class="badge">${plant.family}</span><h1>${plant.od}</h1><p class="native">${plant.hi}</p><p class="english">${plant.en}</p><p class="scientific"><i>${plant.botanical}</i></p><div class="actions"><button id="print">🖨️</button><button id="makeqr">${t.qr}</button></div></div></div></section><section class="contentGrid"><article><h2>${t.details}</h2><div class="facts"><div><b>${t.bot}</b><span><i>${plant.botanical}</i></span></div><div><b>${t.family}</b><span>${plant.family}</span></div><div><b>${t.habit}</b><span>${plant.habit}</span></div><div><b>${t.parts}</b><span>${plant.parts}</span></div><div><b>${t.dist}</b><span>${plant.distribution}</span></div></div><h2>${t.ayur}</h2><p>${plant.ayur}</p><div class="warning"><b>${t.safety}</b><p>${plant.slug === 'olua' ? 'The milky latex can irritate skin and eyes and may be toxic if swallowed. Do not use raw latex without qualified professional guidance.' : 'Traditional use does not establish effectiveness or safety for a medical condition. Pregnant people, children and people taking medicines should seek qualified advice before medicinal use.'}</p></div><h2>${t.ref}</h2><p><a href="${plant.ref}" target="_blank" rel="noopener">Plants of the World Online — Royal Botanic Gardens, Kew</a></p><p><a href="https://en.wikipedia.org/wiki/${encodeURIComponent(plant.en.split(' / ')[0])}" target="_blank" rel="noopener">Wikipedia</a></p></article><aside><div class="qrbox"><h3>${t.qr}</h3><div id="qrcode"></div><small>Scan to open this plant page.</small></div></aside></section>`;
     getImage(plant, document.getElementById('heroimg'));
