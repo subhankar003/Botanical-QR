@@ -1,2 +1,681 @@
-:root{--ink:#17342a;--muted:#64756d;--line:#dce8e1;--paper:#fff;--soft:#f1f7f3;--accent:#287a54;--shadow:0 12px 35px #17342a12}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Oriya","Noto Sans Devanagari",sans-serif;color:var(--ink);background:#f8fbf9;line-height:1.65}.wrap{max-width:1100px;margin:auto;padding:0 20px}.top{position:sticky;top:0;z-index:10;background:#ffffffec;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav{height:68px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;color:var(--ink);text-decoration:none;font-size:18px}.langs{display:flex;gap:5px}.langs button,.actions button{border:1px solid var(--line);background:#fff;padding:8px 11px;border-radius:10px;color:var(--ink);cursor:pointer}.langs button.active{background:var(--ink);color:white}.hero{margin:38px 0 24px;padding:38px;border-radius:26px;background:linear-gradient(135deg,#e7f4eb,#f7fbf8);box-shadow:var(--shadow)}.hero h1{font-size:clamp(30px,6vw,54px);line-height:1.15;margin:8px 0}.hero p{color:var(--muted);max-width:700px}.kicker,.badge{display:inline-block;color:var(--accent);font-weight:800}.search{margin-top:24px}.search input{width:100%;padding:15px 18px;border:1px solid var(--line);border-radius:14px;font-size:16px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:25px 0 55px}.card{display:grid;grid-template-columns:90px 1fr;gap:15px;padding:14px;background:white;border:1px solid var(--line);border-radius:18px;text-decoration:none;color:inherit;box-shadow:0 4px 18px #17342a08}.card h3{margin:0;font-size:20px}.card p{margin:1px 0;color:var(--muted)}.card em{font-size:13px;color:#466359}.thumb{height:90px;border-radius:14px;background:var(--soft);overflow:hidden;display:grid;place-items:center}.thumb span,.bigimg span{font-size:38px}.thumb img,.bigimg img{width:100%;height:100%;object-fit:cover;display:block}.plantHero{padding:26px}.back{display:inline-block;color:var(--accent);text-decoration:none;margin-bottom:20px}.plantGrid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}.bigimg{height:420px;border-radius:22px;overflow:hidden;background:var(--soft);display:grid;place-items:center}.plantHero h1{margin:6px 0;font-size:48px}.native{font-size:22px}.english{font-size:20px;color:var(--muted)}.scientific{font-size:18px}.actions{display:flex;gap:10px;margin-top:20px}.contentGrid{display:grid;grid-template-columns:1fr 300px;gap:28px;margin:28px 0 60px}.contentGrid article,.qrbox{background:white;border:1px solid var(--line);border-radius:20px;padding:25px}.contentGrid h2{font-size:23px;margin-top:0;border-bottom:1px solid var(--line);padding-bottom:9px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:30px}.facts div{padding:14px;background:var(--soft);border-radius:13px}.facts b,.facts span{display:block}.facts b{font-size:13px;color:var(--muted)}.warning{padding:15px;border-left:4px solid #c7892b;background:#fff8e8;border-radius:10px}.warning p{margin-bottom:0}.qrbox{position:sticky;top:90px;text-align:center}.qrbox #qrcode{display:flex;justify-content:center;margin:12px 0}footer{padding:30px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}a{color:var(--accent)}@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.plantGrid,.contentGrid{grid-template-columns:1fr}.qrbox{position:static}.bigimg{height:300px}.plantHero h1{font-size:38px}}@media(max-width:560px){.nav{height:auto;min-height:68px;gap:8px}.brand{font-size:15px}.langs button{padding:6px 7px;font-size:12px}.wrap{padding:0 14px}.hero{padding:25px 18px;border-radius:20px}.grid{grid-template-columns:1fr}.card{grid-template-columns:80px 1fr}.thumb{height:80px}.facts{grid-template-columns:1fr}.bigimg{height:260px}}
-@media print{.top,.actions,.back,footer{display:none}.hero{box-shadow:none}.contentGrid{display:block}.qrbox{margin-top:20px}}
+/* =========================================================
+   Botanical-QR — Main Stylesheet
+   ========================================================= */
+
+:root {
+    --ink: #17342a;
+    --ink-soft: #285344;
+    --muted: #64756d;
+    --line: #dce8e1;
+    --paper: #ffffff;
+    --soft: #f1f7f3;
+    --accent: #287a54;
+    --accent-dark: #1e6041;
+    --accent-light: #e7f4eb;
+    --warning: #c7892b;
+    --shadow: 0 12px 35px rgba(23, 52, 42, 0.07);
+}
+
+/* ---------- Reset ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Noto Sans Oriya",
+        "Noto Sans Devanagari",
+        "Noto Sans",
+        sans-serif;
+
+    color: var(--ink);
+    background: #f8fbf9;
+    line-height: 1.65;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: var(--accent);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+/* ---------- Common container ---------- */
+
+.container,
+.wrap {
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header,
+.top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid var(--line);
+}
+
+.header-inner,
+.nav {
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+}
+
+.logo,
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--ink);
+    text-decoration: none;
+
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.logo:hover,
+.brand:hover {
+    color: var(--accent);
+}
+
+/* ---------- Language buttons ---------- */
+
+.langs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.langs button,
+.actions button {
+    border: 1px solid var(--line);
+    background: #fff;
+
+    padding: 8px 11px;
+
+    border-radius: 10px;
+
+    color: var(--ink);
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.langs button:hover,
+.actions button:hover {
+    background: var(--soft);
+    transform: translateY(-1px);
+}
+
+.langs button.active {
+    background: var(--ink);
+    color: white;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    margin: 38px 0 24px;
+
+    padding: 38px;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent-light),
+            #f7fbf8
+        );
+
+    box-shadow: var(--shadow);
+}
+
+.hero h1 {
+    margin: 8px 0;
+
+    font-size: clamp(30px, 6vw, 54px);
+    line-height: 1.15;
+}
+
+.hero p {
+    max-width: 700px;
+    color: var(--muted);
+}
+
+.kicker,
+.badge {
+    display: inline-block;
+
+    color: var(--accent);
+
+    font-weight: 800;
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search {
+    margin-top: 24px;
+}
+
+.search input {
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+
+    background: white;
+
+    font-size: 16px;
+    color: var(--ink);
+
+    outline: none;
+}
+
+.search input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(40, 122, 84, 0.12);
+}
+
+/* =========================================================
+   PLANT GRID
+   ========================================================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin: 25px 0 55px;
+}
+
+/* =========================================================
+   PLANT CARD
+   ========================================================= */
+
+.card {
+    display: grid;
+
+    grid-template-columns: 90px 1fr;
+
+    gap: 15px;
+
+    padding: 14px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+    border-radius: 18px;
+
+    text-decoration: none;
+    color: inherit;
+
+    box-shadow: 0 4px 18px rgba(23, 52, 42, 0.03);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+
+    border-color: #bfd8ca;
+
+    box-shadow: var(--shadow);
+}
+
+.card h3 {
+    margin: 0;
+
+    font-size: 20px;
+}
+
+.card p {
+    margin: 1px 0;
+
+    color: var(--muted);
+}
+
+.card em {
+    font-size: 13px;
+    color: #466359;
+}
+
+/* ---------- Plant thumbnail ---------- */
+
+.thumb {
+    height: 90px;
+
+    border-radius: 14px;
+
+    background: var(--soft);
+
+    overflow: hidden;
+
+    display: grid;
+    place-items: center;
+}
+
+.thumb span,
+.bigimg span {
+    font-size: 38px;
+}
+
+.thumb img,
+.bigimg img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/* =========================================================
+   PLANT DETAIL HERO
+   ========================================================= */
+
+.plantHero {
+    padding: 26px;
+}
+
+.back {
+    display: inline-block;
+
+    color: var(--accent);
+
+    text-decoration: none;
+
+    margin-bottom: 20px;
+}
+
+.back:hover {
+    text-decoration: underline;
+}
+
+.plantGrid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 35px;
+
+    align-items: center;
+}
+
+.bigimg {
+    height: 420px;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    background: var(--soft);
+
+    display: grid;
+    place-items: center;
+}
+
+.plantHero h1 {
+    margin: 6px 0;
+
+    font-size: 48px;
+    line-height: 1.2;
+}
+
+.native {
+    font-size: 22px;
+}
+
+.english {
+    font-size: 20px;
+
+    color: var(--muted);
+}
+
+.scientific {
+    font-size: 18px;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.actions button:hover {
+    background: var(--ink);
+    color: white;
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.contentGrid {
+    display: grid;
+
+    grid-template-columns: 1fr 300px;
+
+    gap: 28px;
+
+    margin: 28px 0 60px;
+}
+
+.contentGrid article,
+.qrbox {
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 20px;
+
+    padding: 25px;
+}
+
+.contentGrid h2 {
+    font-size: 23px;
+
+    margin-top: 0;
+
+    border-bottom: 1px solid var(--line);
+
+    padding-bottom: 9px;
+}
+
+/* =========================================================
+   FACTS
+   ========================================================= */
+
+.facts {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+}
+
+.facts div {
+    padding: 14px;
+
+    background: var(--soft);
+
+    border-radius: 13px;
+}
+
+.facts b,
+.facts span {
+    display: block;
+}
+
+.facts b {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* =========================================================
+   WARNING / DISCLAIMER
+   ========================================================= */
+
+.warning {
+    padding: 15px;
+
+    border-left: 4px solid var(--warning);
+
+    background: #fff8e8;
+
+    border-radius: 10px;
+}
+
+.warning p {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   QR CODE
+   ========================================================= */
+
+.qrbox {
+    position: sticky;
+    top: 90px;
+
+    text-align: center;
+}
+
+.qrbox #qrcode {
+    display: flex;
+
+    justify-content: center;
+
+    margin: 12px 0;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    padding: 30px 20px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    border-top: 1px solid var(--line);
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .plantGrid,
+    .contentGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .qrbox {
+        position: static;
+    }
+
+    .bigimg {
+        height: 300px;
+    }
+
+    .plantHero h1 {
+        font-size: 38px;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — PHONE
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+    .container,
+    .wrap {
+        width: calc(100% - 28px);
+    }
+
+    .header-inner,
+    .nav {
+        min-height: 68px;
+
+        gap: 8px;
+    }
+
+    .logo,
+    .brand {
+        font-size: 15px;
+    }
+
+    .langs button {
+        padding: 6px 7px;
+
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 25px 18px;
+
+        border-radius: 20px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        grid-template-columns: 80px 1fr;
+    }
+
+    .thumb {
+        height: 80px;
+    }
+
+    .facts {
+        grid-template-columns: 1fr;
+    }
+
+    .bigimg {
+        height: 260px;
+    }
+
+    .plantHero h1 {
+        font-size: 34px;
+    }
+
+    .native {
+        font-size: 20px;
+    }
+
+    .english {
+        font-size: 18px;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .container,
+    .wrap {
+        width: calc(100% - 20px);
+    }
+
+    .header-inner,
+    .nav {
+        flex-wrap: wrap;
+        padding: 8px 0;
+    }
+
+    .langs {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .hero {
+        margin-top: 20px;
+    }
+
+    .card {
+        grid-template-columns: 70px 1fr;
+        gap: 10px;
+    }
+
+    .thumb {
+        height: 70px;
+    }
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+    .site-header,
+    .top,
+    .actions,
+    .back,
+    footer {
+        display: none;
+    }
+
+    .hero {
+        box-shadow: none;
+    }
+
+    .contentGrid {
+        display: block;
+    }
+
+    .qrbox {
+        margin-top: 20px;
+    }
+}
