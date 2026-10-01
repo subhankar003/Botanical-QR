@@ -66,11 +66,6 @@ function updateLanguageButtons() {
     });
 }
 
-function fallbackHomeImage(image) {
-    image.onerror = null;
-    image.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420"%3E%3Crect width="100%25" height="100%25" fill="%23f1f7f3"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-size="82"%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E';
-}
-
 function renderHome() {
     const t = HOME_T[lang];
     const detailT = T[lang];
@@ -112,8 +107,9 @@ function renderHome() {
         document.getElementById('no-results').hidden = matches !== 0;
     };
 
-    document.querySelectorAll('.plant-card-image img').forEach((image) => {
-        image.onerror = () => fallbackHomeImage(image);
+    plants.forEach((plant) => {
+        const image = document.querySelector(`[data-img="${plant.slug}"]`);
+        if (image) getImage(plant, image);
     });
 }
 
