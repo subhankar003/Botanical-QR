@@ -679,3 +679,62 @@ footer {
         margin-top: 20px;
     }
 }
+
+/* =========================================================
+   HOME PLANT SECTION
+   ========================================================= */
+
+.plant-section {
+    margin: 35px 0 60px;
+}
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    margin: 5px 0;
+    font-size: clamp(25px, 4vw, 34px);
+}
+
+.section-heading p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.plant-section .grid {
+    align-items: stretch;
+}
+
+.plant-section .card {
+    min-height: 118px;
+}
+
+.plant-section .thumb {
+    width: 90px;
+    height: 90px;
+}
+
+.plant-section .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Better card appearance on phones */
+
+@media (max-width: 560px) {
+
+    .plant-section {
+        margin-bottom: 40px;
+    }
+
+    .plant-section .card {
+        min-height: 100px;
+    }
+
+    .plant-section .thumb {
+        width: 80px;
+        height: 80px;
+    }
+}
