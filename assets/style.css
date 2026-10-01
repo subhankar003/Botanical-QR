@@ -738,3 +738,318 @@ footer {
         height: 80px;
     }
 }
+/* =========================================================
+   HOME PAGE + SHARED HEADER FIX
+   ========================================================= */
+
+/* ---------- Make both headers look identical ---------- */
+
+.language-switcher,
+.langs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.language-switcher button,
+.langs button {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+
+    padding: 8px 13px;
+    border-radius: 12px;
+
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1.2;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.language-switcher button:hover,
+.langs button:hover {
+    background: var(--soft);
+    border-color: #bfd8ca;
+    transform: translateY(-1px);
+}
+
+.language-switcher button.active,
+.langs button.active {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+}
+
+
+/* ---------- Home search box ---------- */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    max-width: 700px;
+    margin-top: 24px;
+
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+
+    padding: 0 16px;
+
+    box-shadow: 0 4px 15px rgba(23, 52, 42, .04);
+}
+
+.search-box span {
+    font-size: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+
+    padding: 15px 0;
+
+    background: transparent;
+    color: var(--ink);
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   HOME PLANT CARDS
+   ========================================================= */
+
+.plants-section {
+    margin: 35px 0 60px;
+}
+
+.plant-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-top: 24px;
+}
+
+
+/* Individual plant card */
+
+.plant-card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    border: 1px solid var(--line);
+    border-radius: 20px;
+
+    color: inherit;
+    text-decoration: none;
+
+    box-shadow: 0 5px 20px rgba(23, 52, 42, .05);
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
+}
+
+.plant-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #bfd8ca;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* Plant image */
+
+.plant-card-image {
+    width: 100%;
+    height: 210px;
+
+    background: var(--soft);
+
+    overflow: hidden;
+
+    display: grid;
+    place-items: center;
+}
+
+.plant-card-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .35s ease;
+}
+
+.plant-card:hover .plant-card-image img {
+    transform: scale(1.04);
+}
+
+
+/* Plant information */
+
+.plant-card-body {
+    padding: 17px 18px 20px;
+}
+
+.plant-card-body h3 {
+    margin: 0 0 3px;
+
+    font-size: 22px;
+    line-height: 1.35;
+}
+
+.plant-card-body p {
+    margin: 3px 0;
+
+    color: var(--muted);
+
+    font-size: 16px;
+}
+
+.plant-card-body em {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #466359;
+
+    font-size: 14px;
+}
+
+
+/* Section heading */
+
+.section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 10px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: clamp(26px, 4vw, 36px);
+}
+
+#plant-count {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .plant-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .plant-card-image {
+        height: 190px;
+    }
+}
+
+
+@media (max-width: 560px) {
+
+    .language-switcher,
+    .langs {
+        gap: 5px;
+    }
+
+    .language-switcher button,
+    .langs button {
+        padding: 7px 9px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+
+    .plant-grid {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .plant-card {
+        display: grid;
+
+        grid-template-columns: 105px 1fr;
+        align-items: stretch;
+    }
+
+    .plant-card-image {
+        height: 100%;
+        min-height: 120px;
+    }
+
+    .plant-card-body {
+        padding: 15px;
+    }
+
+    .plant-card-body h3 {
+        font-size: 20px;
+    }
+
+    .plant-card-body p {
+        font-size: 15px;
+    }
+
+    .plant-card-body em {
+        font-size: 13px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+    }
+}
+
+
+/* Very small screens */
+
+@media (max-width: 380px) {
+
+    .plant-card {
+        grid-template-columns: 90px 1fr;
+    }
+
+    .plant-card-image {
+        min-height: 110px;
+    }
+
+    .language-switcher button,
+    .langs button {
+        padding: 6px 7px;
+        font-size: 12px;
+    }
+}
